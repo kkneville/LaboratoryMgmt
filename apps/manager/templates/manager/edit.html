@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Member</title>
+  </head>
+  <body>
+    BoredBoard |
+    <a href="/dashboard">Home</a> |
+    <a href="{% url "showmembers" %}">Members</a> |
+    <a href="/chats">Chat</a> |
+    <a href="{% url "logout" %}">Logout</a>
+
+  <h2>Edit {{ person.firstname }} {{ person.lastname }}'s Profile</h2>
+
+  {% for error in errors %}
+  <p>{{ error }}<p>
+  {% endfor %}
+
+  <form class="" action="{% url "edit" %}" method="post">
+    {% csrf_token %}
+    <label for="firstname">First Name:</label>
+    <input type="text" name="firstname" value="{{ person.firstname }}">
+    <br><br>
+    <label for="lastname">Last Name:</label>
+    <input type="text" name="lastname" value="{{ person.lastname }}">
+    <br><br>
+    <p>Current Birthday: {{ person.dob }}</p>
+    <label for="newdob">Change Birthday:</label>
+    <input type="date" name="newdob" value="">
+    <br><br>
+    <label for="email">Email:</label>
+    <input type="text" name="email" value="{{ person.email }}">
+    <br><br>
+
+    {% if member.level == "normal" %}
+    <label for="oldpassword">Old Password:</label>
+    <input type="password" name="oldpassword" value="">
+    <br><br>
+    <label for="newpw">New Password:</label>
+    <input type="password" name="newpw" value="">
+    <br><br>
+    <label for="newpwconfirm">Confirm New Password:</label>
+    <input type="password" name="newpwconfirm" value="">
+    <input type="hidden" name="level" value="normal">
+    {% endif %}
+
+    {% if member.level == "admin" %}
+    <br><br>
+    <label for="newpw">New Password:</label>
+    <input type="password" name="newpw" value="">
+    <br><br>
+    <label for="newpwconfirm">Confirm New Password:</label>
+    <input type="password" name="newpwconfirm" value="">
+    <br><br>
+    <p>Permission Level:<select name="level">
+      <option value="normal">Normal</option>
+      <option value="admin">Admin</option>
+    </select></p>
+    {% endif %}
+
+    <br><br>
+    <input type="hidden" name="id" value="{{ person.id }}">
+    <button type="submit">Save Changes</button>
+    </form>
+
+
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Delete Check</title>
+  </head>
+  <body>
+    BoredBoard |
+    <a href="/dashboard">Home</a> |
+    <a href="{% url "showmembers" %}">Members</a> |
+    <a href="/chats">Chat</a> |
+    <a href="{% url "logout" %}">Logout</a>
+
+    <h2>Delete</h2>
+
+    <h3>Are you sure you want to delete {{ person.firstname}} {{ person.lastname }}?</h3>
+
+    <form action="{% url "delete" %}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="id" value="{{ person.id }}">
+      <button type="submit" name="delete" value="True">Delete this Member</button>
+    </form>
+
+  </body>
+</html>

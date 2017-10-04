@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add a New Practice</title>
+  </head>
+  <body>
+  <h1> Add a New Practice</h1>
+
+  <h2>Select a Rep Group:</h2>
+  <form action="{% url 'add_repgroup' %}" method="post">
+  {% csrf_token %}
+    <p>Select a Rep Group</p>
+    <select name="repgroup">
+      <option value="new">New</option>
+      {% for group in groups %}
+      <option value="{{ group.name }}">{{ group.name }}</option>
+      {% endfor %}
+    </select>
+
+  <h2>Or Add a New Rep Group:</h2>
+    <label for="name">Rep Group Name:</label>
+    <input type="text" name="name" value="">
+
+    <label for="primary_contact">Primary Contact:</label>
+    <input type="text" name="primary_contact" value="">
+
+    <label for="private_phone">Phone:</label>
+    <input type="number" name="private_phone" value="">
+
+    <label for="email">Email:</label>
+    <input type="text" name="email" value="">
+
+    <label for="contracts">Contracts:</label>
+    <input type="text" name="contracts" value="">
+
+    <label for="comments">Comments:</label>
+    <input type="text" name="comments" value="">
+
+    <button type="submit">Select</button>
+    </form>
+
+
+
+
+
+
+
+  </body>
+</html>

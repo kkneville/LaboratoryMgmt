@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add a New Member</title>
+  </head>
+  <body>
+    BoredBoard |
+    <a href="/dashboard">Dashboard</a> |
+    <a href="/showmember">Profile</a> |
+    <a href="/logout">Logout</a>
+
+
+    <h2>Register</h2>
+    <div class="registration">
+      <form class="" action="/addmember" method="post">
+      {% csrf_token %}
+      <label for="firstname">First Name:</label>
+      <input type="text" name="firstname" value=""></input>
+      <br>
+      <label for="lastname">Last Name:</label>
+      <input type="text" name="lastname" value=""></input>
+      <br>
+      <label for="dob">Date of Birth:</label>
+      <input type="date" name="dob" value=""></input>
+      <br>
+      <label for="email">Email:</label>
+      <input type="text" name="email" value=""></input>
+      <br>
+      <label for="password">Password:</label>
+      <input type="password" name="password" value=""></input>
+      <br>
+      <label for="passwordconfirm">Confirm Password:</label>
+      <input type="password" name="passwordconfirm" value=""></input>
+      <br>
+      <button type="submit">Register</button>
+      </form>
+    </div>
+    
+    {% for error in errors %}
+    <p>{{ error }}<p>
+    {% endfor %}
+
+  </body>
+</html>

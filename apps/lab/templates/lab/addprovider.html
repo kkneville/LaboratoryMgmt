@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Practice</title>
+  </head>
+  <body>
+    <h2>Select or Add a Provider:</h2>
+
+      <p> Rep Group : {{ repgroup.name }} </p>
+      <p> Practice : {{ practice.name }} </p>
+
+      <form action="{% url 'add_practice' %}" method="post">
+      {% csrf_token %}
+
+      <label for="firstname">First Name:</label>
+      <input type="text" name="firstname" value="">
+
+      <label for="lastname">Last Name:</label>
+      <input type="text" name="lastname" value="">
+
+      <label for="designation">Suffix:</label>
+      <input type="text" name="designation" value="">
+
+      <label for="email">Email:</label>
+      <input type="text" name="email" value="">
+
+      <label for="private_phone">Phone:</label>
+      <input type="text" name="private_phone" value="">
+
+      <label for="npi">NPI:</label>
+      <input type="text" name="npi" value="">
+
+      <label for="password">City:</label>
+      <input type="password" name="password" value="">
+
+      <label for="comments">Comments:</label>
+      <input type="text" name="comments" value="">
+
+      <input type="hidden" name="repgroupid" value="{{ repgroup.id }}">
+      <input type="hidden" name="practiceid" value="{{ practice.id }}">
+      <button type="submit">Add Provider</button>
+      </form>
+
+  </body>
+</html>

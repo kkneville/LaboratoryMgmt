@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Profile Page</title>
+  </head>
+  <body>
+    BoredBoard |
+    <a href="/dashboard">Home</a> |
+    <a href="{% url "showmembers" %}">Members</a> |
+    <a href="/chats">Chat</a> |
+    <a href="{% url "logout" %}">Logout</a>
+
+    <h2>{{ person.firstname }} {{ person.lastname }}'s Profile</h2>
+
+    <p>First Name: {{ person.firstname }}</p>
+    <p>Last Name: {{ person.lastname }}</p>
+    <p>Birthday: {{ person.dob }}</p>
+    <p>Email: {{ person.email }}</p>
+    <p>Joined On: {{ person.created_at }}</p>
+    <p>Recent Comments: placeholder </p>
+    <p>Favourite Books: placeholder </p>
+    <p>Recent Posts: </p>
+        {% for post in posts %}
+        <h3> {{ post.speaker }} </h3>
+        <p> {{ post.message }} </p>
+        {% endfor %}
+        <a href="{% url "memberquotes" id=person.id %}">Read more of {{ person.firstname }}'s posts...</a>
+    <p>Favourite Quotes:</p>
+        {% for quote in quotes %}
+        <h3> {{ quote.speaker }} </h3>
+        <p> {{ quote.message }} </p>
+        <p> {{ quote.postedby.firstname }} </p>
+        {% endfor %}
+
+    <p>Favourite Something Else: placeholder </p>
+
+    {% if member.level == "admin" or member.id == person.id %}
+    <p><a href="{% url "editmember" id=person.id %}">Edit Member</a></p>
+    {% endif %}
+
+  </body>
+</html>

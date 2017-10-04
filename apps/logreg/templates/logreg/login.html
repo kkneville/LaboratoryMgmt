@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body>
+    BoredBoard |
+    <a href="/register">Register</a>
+
+
+    <h2>Login</h2>
+    <div class="login">
+      <form class="" action="/login" method="post">
+      {% csrf_token %}
+      <label for="email">Email:</label>
+      <input type="text" name="email" value=""></input>
+      <br>
+      <label for="password">Password:</label>
+      <input type="password" name="password" value=""></input>
+      <br>
+      <button type="submit">Login
+      </button>
+      </form>
+    </div>
+
+    <p><a href="/register">Don't have an account? Register here.</a></p>
+
+    {% for error in errors %}
+    <p>{{ error }}<p>
+    {% endfor %}
+
+
+  </body>
+</html>
